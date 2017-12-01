@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# Use mysql as the database for Active Record
+gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'rails',        '5.1.2'
 gem 'puma',         '3.9.1'
 gem 'sass-rails',   '5.0.6'
@@ -8,7 +10,7 @@ gem 'coffee-rails', '4.2.2'
 gem 'jquery-rails', '4.3.1'
 gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
-
+gem 'bcrypt',                  '3.1.11'
 gem 'bootstrap-sass',          '3.3.7'
 
 group :development, :test do
