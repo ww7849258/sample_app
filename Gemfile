@@ -12,6 +12,7 @@ gem 'turbolinks',   '5.0.1'
 gem 'jbuilder',     '2.7.0'
 gem 'bcrypt',                  '3.1.11'
 gem 'bootstrap-sass',          '3.3.7'
+gem 'awesome_print'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
@@ -30,6 +31,7 @@ group :test do
   gem 'minitest-reporters',       '1.1.14'
   gem 'guard',                    '2.13.0'
   gem 'guard-minitest',           '2.4.4'
+  gem 'pry-rails'
 end
 
 group :production do
