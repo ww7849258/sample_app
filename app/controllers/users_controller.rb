@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)    # 不是最终的实现方式
     if @user.save
+      log_in @user
       flash[:success] = "欢迎来到茶余饭后的App!"
       redirect_to @user
     else
