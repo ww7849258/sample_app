@@ -12,6 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "欢迎来到茶余饭后的App!"
+      remember @user 
       redirect_to @user
     else
       render 'new'
