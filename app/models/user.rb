@@ -11,7 +11,6 @@ class User < ApplicationRecord
 
   attr_accessor :remember_token
 
-  self.per_page = 15
 
   def downcase_email
     self.email = email.downcase
