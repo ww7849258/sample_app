@@ -3,3 +3,117 @@ wuwei:
   name: wuwei
   email: wuwei215a@126.com
   password_digest: <%= User.digest('password') %>
+  admin: true
+
+caicai:
+  name: caicai
+  email: duchess@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai1:
+  name: caicai1
+  email: duchess1@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai2:
+  name: caicai2
+  email: duchess2@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai3:
+  name: caicai3
+  email: duchess3@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai4:
+  name: caicai4
+  email: duchess4@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai5:
+  name: caicai5
+  email: duchess5@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai6:
+  name: caicai6
+  email: duchess6@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai7:
+  name: caicai7
+  email: duchess7@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai8:
+  name: caicai8
+  email: duchess8@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai9:
+  name: caicai9
+  email: duchess9@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai10:
+  name: caicai10
+  email: duchess10@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai11:
+  name: caicai11
+  email: duchess11@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai12:
+  name: caicai12
+  email: duchess12@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai13:
+  name: caicai13
+  email: duchess13@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai14:
+  name: caicai14
+  email: duchess14@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai15:
+  name: caicai15
+  email: duchess15@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai16:
+  name: caicai16
+  email: duchess16@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai17:
+  name: caicai17
+  email: duchess17@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai18:
+  name: caicai18
+  email: duchess18@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai19:
+  name: caicai19
+  email: duchess19@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai20:
+  name: caicai20
+  email: duchess20@example.gov
+  password_digest: <%= User.digest('password') %>
+
+caicai21:
+  name: caicai21
+  email: duchess21@example.gov
+  password_digest: <%= User.digest('password') %>
+
+
+
