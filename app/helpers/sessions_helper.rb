@@ -37,8 +37,10 @@ module SessionsHelper
   end
 
   def remember(user)
+    # 生成记忆令牌，并将对应的记忆摘要存到数据库
     user.remember
     cookies.permanent.signed[:user_id] = user.id
+    # cookies中存入记忆令牌，用于匹配数据库中的记忆摘要
     cookies.permanent[:remember_token] = user.remember_token
   end
 
