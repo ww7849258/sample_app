@@ -7,15 +7,23 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   before_save :downcase_email
+  before_create :create_activation_digest
   has_secure_password
 
   attr_accessor :remember_token
+  attr_accessor :activation_token
 
 
-  def downcase_email
-    self.email = email.downcase
+  # 激活账户
+  def activate
+    self.update_columns({activated: true,
+                         activated_at: Time.now})
   end
 
+  # 发送激活邮件
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
   # 返回指定字符串的哈希摘要
   def self.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -40,9 +48,20 @@ class User < ApplicationRecord
   end
 
   # 如果指定的令牌和摘要匹配，返回 true
-  def authenticated?(remember_token)
-    return false if self.remember_digest.blank?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  def authenticated?(attribute, token)
+    digest = self.send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
+  end
+  private
+  def downcase_email
+    self.email = self.email.downcase
+  end
+
+
+  def create_activation_digest
+    self.activation_token = User.new_token
+    self.activation_digest = User.digest(self.activation_token)
   end
 
 end

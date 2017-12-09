@@ -12,13 +12,17 @@ User.create!( id: 1,
              email: "wuwei215a@126.com",
              admin: true,
              password:              "123456",
-             password_confirmation: "123456")
+             password_confirmation: "123456",
+             activated: true,
+             activated_at: Time.now)
 User.create!( id: 2,
              name:  "任大臭屁",
              email: "rencai@126.com",
              admin: true,
              password:              "123456",
-             password_confirmation: "123456")
+             password_confirmation: "123456",
+             activated: true,
+             activated_at: Time.now)
 99.times do |n|
   name  = Faker::Name.name
   email = "wuwei-#{n+1}@126.com"
@@ -27,5 +31,7 @@ User.create!( id: 2,
                name:  name,
                email: email,
                password:              password,
-               password_confirmation: password)
+               password_confirmation: password,
+               activated: true,
+               activated_at: Time.now)
 end

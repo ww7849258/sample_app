@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
 
   
@@ -14,15 +14,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated?
   end
 
   def create
     @user = User.new(user_params)    # 不是最终的实现方式
     if @user.save
-      log_in @user
-      flash[:success] = "欢迎来到茶余饭后的App!"
-      remember @user 
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] ="请检查邮件,激活您的账号."
+      redirect_to root_url
     else
       render 'new'
     end
