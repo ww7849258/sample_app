@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 #User.delete_ail
-ActiveRecord::Base.connection.execute 'truncate table users'
+ActiveRecord::Base.connection.execute 'truncate users'
 User.create!(name:  "茶余饭后",
              email: "wuwei215a@126.com",
              admin: true,
@@ -15,7 +15,7 @@ User.create!(name:  "茶余饭后",
              password_confirmation: "123456",
              activated: true,
              activated_at: Time.now)
-User.create!( id: 2,
+User.create!(
              name:  "任大臭屁",
              email: "rencai@126.com",
              admin: true,
