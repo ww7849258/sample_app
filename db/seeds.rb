@@ -6,7 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 #
-User.delete_all
+#User.delete_ail
+ActiveRecord::Base.connection.execute 'truncate table users'
 User.create!( id: 1,
              name:  "茶余饭后",
              email: "wuwei215a@126.com",
