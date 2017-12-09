@@ -8,8 +8,7 @@
 #
 #User.delete_ail
 ActiveRecord::Base.connection.execute 'truncate table users'
-User.create!( id: 1,
-             name:  "茶余饭后",
+User.create!(name:  "茶余饭后",
              email: "wuwei215a@126.com",
              admin: true,
              password:              "123456",
@@ -28,8 +27,7 @@ User.create!( id: 2,
   name  = Faker::Name.name
   email = "wuwei-#{n+1}@126.com"
   password = "password"
-  User.create!( id: n+3,
-               name:  name,
+  User.create!(name:  name,
                email: email,
                password:              password,
                password_confirmation: password,
