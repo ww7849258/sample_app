@@ -10,9 +10,7 @@ class User < ApplicationRecord
   before_create :create_activation_digest
   has_secure_password
 
-  attr_accessor :remember_token
-  attr_accessor :activation_token
-
+  attr_accessor :remember_token, :activation_token, :reset_token
 
   # 激活账户
   def activate
@@ -20,6 +18,17 @@ class User < ApplicationRecord
                          activated_at: Time.now})
   end
 
+  # 设置密码重设相关的属性
+  def create_reset_digest
+    self.reset_token = User.new_token
+    self.update_columns(reset_digest:  User.digest(self.reset_token),
+                         reset_sent_at: Time.now)
+  end
+
+  # 发送密码重设邮件
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
   # 发送激活邮件
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
@@ -53,6 +62,11 @@ class User < ApplicationRecord
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
   end
+
+  def password_reset_expired?
+    self.reset_sent_at < 2.hours.ago
+  end
+
   private
   def downcase_email
     self.email = self.email.downcase
@@ -63,5 +77,7 @@ class User < ApplicationRecord
     self.activation_token = User.new_token
     self.activation_digest = User.digest(self.activation_token)
   end
+
+
 
 end
