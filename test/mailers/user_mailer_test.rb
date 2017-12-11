@@ -11,10 +11,10 @@ class UserMailerTest < ActionMailer::TestCase
     mail = UserMailer.account_activation(@user)
     assert_equal "账号激活", mail.subject
     assert_equal [@user.email], mail.to
-    assert_equal ["wuwei215a@126.com"], mail.from
-    #assert_match @user.name,               mail.body.encoded
-    #assert_match @user.activation_token,   mail.body.encoded
-    #assert_match CGI.escape(@user.email),  mail.body.encoded
+    assert_equal ["wuwei@silverlining.com.cn"], mail.from
+    assert_match @user.name,               mail.body.encoded
+    assert_match @user.activation_token,   mail.body.encoded
+    assert_match CGI.escape(@user.email),  mail.body.encoded
   end
 
   test "password_reset" do

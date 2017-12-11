@@ -1,7 +1,7 @@
 <h1>茶余饭后 APP</h1>
 <p>您好: <%= @user.name %>,</p>
 <p>
-欢迎来到茶余饭后的APP! 点击下面链接激活您的账户:
+欢迎来到茶余饭后的APP! 点击下面链接激活您的账号:
 </p>
 <%= link_to "激活", edit_account_activation_url(@user.activation_token,email: @user.email) %>
 <%#<%= image_tag attachments['caipi.jpg'].url, alt: 'My Photo', class: 'photos' %>
