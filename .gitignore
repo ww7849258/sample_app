@@ -26,4 +26,5 @@
 *.swn
 *.swo
 *.bak
+/public/uploads
 *.dmp

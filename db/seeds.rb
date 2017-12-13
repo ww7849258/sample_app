@@ -7,7 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 #User.delete_ail
-ActiveRecord::Base.connection.execute 'truncate users'
+#ActiveRecord::Base.connection.execute 'truncate microposts'
+#ActiveRecord::Base.connection.execute 'truncate users'
 User.create!(name:  "茶余饭后",
              email: "wuwei215a@126.com",
              admin: true,
@@ -33,4 +34,10 @@ User.create!(
                password_confirmation: password,
                activated: true,
                activated_at: Time.now)
+end
+
+users = User.order(:created_at).take(6)
+50.times do
+  content = Faker::Lorem.sentence(5)
+  users.each { |user| user.microposts.create!(content: content) }
 end

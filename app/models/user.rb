@@ -9,6 +9,7 @@ class User < ApplicationRecord
   before_save :downcase_email
   before_create :create_activation_digest
   has_secure_password
+  has_many :microposts, dependent: :destroy
 
   attr_accessor :remember_token, :activation_token, :reset_token
 
@@ -16,6 +17,10 @@ class User < ApplicationRecord
   def activate
     self.update_columns({activated: true,
                          activated_at: Time.now})
+  end
+
+  def feed
+    Micropost.where("user_id = ?",self.id)
   end
 
   # 设置密码重设相关的属性
