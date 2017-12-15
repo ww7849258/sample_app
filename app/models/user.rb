@@ -11,6 +11,17 @@ class User < ApplicationRecord
   has_secure_password
   has_many :microposts, dependent: :destroy
 
+  # 关注的
+  has_many :active_relationships, class_name:  "Relationship",
+    foreign_key: "follower_id",
+    dependent:   :destroy
+  has_many :following, through: :active_relationships, source: :followed
+
+  # 被关注的
+  has_many :passive_relationships, class_name: "Relationship",
+    foreign_key: "followed_id",
+    dependent: :destroy
+  has_many :followers, through: :passive_relationships, source: :follower
   attr_accessor :remember_token, :activation_token, :reset_token
 
   # 激活账户
@@ -20,7 +31,26 @@ class User < ApplicationRecord
   end
 
   def feed
-    Micropost.where("user_id = ?",self.id)
+    #Micropost.where("user_id IN (?) OR user_id = ?", self.following_ids, self.id)
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids})
+                     OR user_id = :user_id", user_id: id)
+  end
+
+  # 关注另一个用户
+  def follow(other_user)
+    self.following << other_user
+  end
+
+  # 取消关注另一个用户
+  def unfollow(other_user)
+    self.following.delete(other_user)
+  end
+
+  # 如果当前用户关注了指定的用户，返回 true
+  def following?(other_user)
+    self.following.include?(other_user)
   end
 
   # 设置密码重设相关的属性

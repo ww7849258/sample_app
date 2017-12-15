@@ -75,4 +75,33 @@ class UserTest < ActiveSupport::TestCase
       @user.destroy
     end
   end
+
+  test "should follow and unfollow a user" do
+    wuwei = users(:wuwei)
+    caicai  = users(:caicai)
+    assert_not wuwei.following?(caicai)
+    wuwei.follow(caicai)
+    assert wuwei.following?(caicai)
+    assert caicai.followers.include?(wuwei)
+    wuwei.unfollow(caicai)
+    assert_not wuwei.following?(caicai)
+  end
+
+  test "feed should have the right posts" do
+    wuwei = users(:wuwei)
+    caichoupi_1 = users(:caichoupi_1)
+    caichoupi_5 = users(:caichoupi_5)
+    # 关注的用户发布的微博
+    caichoupi_1.microposts.each do |post_following|
+      assert wuwei.feed.include?(post_following)
+    end
+    # 自己的微博
+    wuwei.microposts.each do |post_self|
+      assert wuwei.feed.include?(post_self)
+    end
+    # 未关注用户的微博
+    caichoupi_5.microposts.each do |post_unfollowed|
+      assert_not wuwei.feed.include?(post_unfollowed)
+    end
+  end
 end
